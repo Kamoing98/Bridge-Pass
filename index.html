@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BridgePass: Skills Passport for Skilled Refugees</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#faf8f4;--fg:#1f2430;--mut:#5d6575;--card:#fff;--bd:#e2ddd2;--ac:#0f6b5c;--acf:#fff;--ok:#1b7a43;--wn:#a86400;--no:#b3261e}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171c;--fg:#eceae4;--mut:#a3a9b5;--card:#1d2128;--bd:#323844;--ac:#4cc3ac;--acf:#0b1a17;--ok:#5fcf8a;--wn:#e8b04a;--no:#ff8a80}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.7rem;margin:.2em 0}h2{font-size:1.15rem;margin:1.3em 0 .4em}p{margin:.4em 0}
+.sub{color:var(--mut)}.tabs{display:flex;gap:8px;margin:16px 0}
+button,select,input{font:inherit;color:var(--fg)}
+.tab,.go{padding:9px 16px;border-radius:8px;border:1px solid var(--bd);background:var(--card);cursor:pointer}
+.tab.on,.go{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin:12px 0}
+label{display:block;margin:10px 0 4px;font-weight:bold}
+select{width:100%;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg)}
+.chk{display:flex;gap:8px;align-items:center;font-weight:normal;margin:4px 0}
+.row{display:flex;gap:8px;align-items:center}.row span{min-width:2ch;text-align:right}
+input[type=range]{flex:1}
+.score{font-size:2.4rem;font-weight:bold}.bar{height:10px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.ok{color:var(--ok)}.wn{color:var(--wn)}.no{color:var(--no)}
+li{margin:5px 0}.tag{display:inline-block;padding:2px 9px;border:1px solid var(--bd);border-radius:12px;margin:2px;font-size:.88rem}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--bd);padding:7px;text-align:left;vertical-align:top;font-size:.93rem}
+.scroll{overflow-x:auto}.note{font-size:.88rem;color:var(--mut)}
+[hidden]{display:none}
+</style></head><body><main>
+<h1>BridgePass</h1>
+<p class="sub">A skills passport that turns evidence into employability, even when paperwork is missing.</p>
+<div class="tabs"><button class="tab on" data-t="demo">Prototype</button><button class="tab" data-t="pitch">Submission</button></div>
+
+<section id="demo">
+<div class="card">
+<label for="occ">Profession</label><select id="occ"></select>
+<label>Skills you can show (tick all that apply)</label><div id="skills"></div>
+<label for="yrs">Years of professional experience: <b id="yv">5</b></label>
+<input type="range" id="yrs" min="0" max="20" value="5">
+<label>Evidence you can provide</label>
+<label class="chk"><input type="checkbox" id="e1"> Degree or certificate (any copy)</label>
+<label class="chk"><input type="checkbox" id="e2"> A former employer or lecturer who can confirm my work</label>
+<label class="chk"><input type="checkbox" id="e3"> Work samples or a portfolio</label>
+<label class="chk"><input type="checkbox" id="e4"> Professional language ability for work</label>
+<label>Challenge self-check (rate 1-5)</label>
+<div id="chal"></div>
+<label for="wa">Work authorization</label>
+<select id="wa"><option value="y">Permit allows me to work</option><option value="p">Application pending</option><option value="u">Not sure</option></select>
+<label class="chk"><input type="checkbox" id="bk"> I can open or use a bank or mobile-money account</label>
+<label class="chk"><input type="checkbox" id="id"> I hold a valid ID or refugee document</label>
+<p><button class="go" id="run">Generate my passport</button></p>
+</div>
+<div id="out" hidden></div>
+<p class="note">Demo only: scores use self-reported data and simple rules. A live version needs partner assessors, and legal steps must be confirmed with the host country's authorities and UNHCR/ILO partners.</p>
+</section>
+
+<section id="pitch" hidden>
+<div class="card"><h2 style="margin-top:0">The problem</h2>
+<p>Skilled refugees lose years to "brain waste" because three barriers stack up: their qualifications cannot be verified, they cannot legally or financially get paid, and they lack local references and networks. Fixing one barrier alone leaves the others in place.</p></div>
+<div class="card"><h2 style="margin-top:0">The solution</h2>
+<p>BridgePass is one passport with three layers. <b>Verify:</b> evidence-based competency scoring (documents, references, work samples, task challenges) in place of paper-only checks. <b>Unlock:</b> a personal readiness checklist for work authorization, ID and payment access, including remote-work and mobile-money routes. <b>Connect:</b> matching to returnships, fellowships and mentors with hiring partners, based on verified skills.</p></div>
+<div class="card scroll"><h2 style="margin-top:0">Fit with the five benchmarks</h2>
+<table><tr><th>Benchmark</th><th>How BridgePass responds</th></tr>
+<tr><td>Credential &amp; skills verification</td><td>Weighted evidence score, plus a named bridging step when paper records are missing.</td></tr>
+<tr><td>Access &amp; compliance readiness</td><td>Checklist flags authorization, ID and banking gaps before an employer is approached.</td></tr>
+<tr><td>Practical &amp; market fit</td><td>Role matches come from role-to-skill requirements, so candidates see where they already fit.</td></tr>
+<tr><td>Social &amp; SDG impact</td><td>SDG 4 (bridging), 8 (decent work), 10 (inclusion), 16 (institutions), 17 (partners).</td></tr>
+<tr><td>Sustainability &amp; scalability</td><td>Occupation profiles are data, not code, so new sectors and countries are added without rebuilding.</td></tr></table></div>
+<div class="card"><h2 style="margin-top:0">Roadmap</h2><ul>
+<li><b>Pilot (0-3 months):</b> 3 occupations, 50 candidates, 5 hiring partners.</li>
+<li><b>Validate:</b> compare passport scores against assessor interviews and employer outcomes.</li>
+<li><b>Scale:</b> add regulators' recognition pathways and an assessor network; export a shareable, candidate-owned passport.</li></ul>
+<p class="note">Risks: self-reported data can be inflated (mitigated by reference checks and live challenges); rules differ by country (mitigated by partner-maintained rule sets); privacy of displaced people (candidate-owned data, minimal sharing).</p></div>
+</section>
+
+<script>
+var D={
+"Software & Data":{s:["Programming","Databases","Cloud basics","Data analysis","Version control"],c:["Write a function to clean a messy list of records","Explain how you would debug a slow report"],r:["Junior Developer (returnship)","Data Analyst Fellow","QA Tester (remote)"],b:"A short online technical assessment or recognized vendor certification"},
+"Health & Nursing":{s:["Patient assessment","Medication safety","Infection control","Records","Emergency response"],c:["Describe your response to a deteriorating patient","Outline safe medication administration steps"],r:["Community Health Worker","Clinical Support Assistant","Health Records Officer"],b:"A licensing or equivalence exam through the national health regulator"},
+"Accounting & Finance":{s:["Bookkeeping","Financial reporting","Tax basics","Spreadsheets","Audit support"],c:["Reconcile a simple bank statement","Explain how you prepare a monthly report"],r:["Bookkeeper","Finance Assistant","Remote Accounts Associate"],b:"A recognized bookkeeping or accounting certification route"},
+"Teaching":{s:["Lesson planning","Classroom management","Assessment","Curriculum","Digital tools"],c:["Outline a 30-minute lesson on a topic you know","Describe how you support a struggling learner"],r:["Teaching Assistant","Online Tutor","Curriculum Support Fellow"],b:"Teacher registration or a bridging course with the education authority"},
+"Engineering":{s:["Technical drawing","Site safety","Project planning","Materials","CAD tools"],c:["Describe a safety check before a site task","Estimate materials for a small build"],r:["Technician Trainee","Site Supervisor Assistant","Drafting Support (remote)"],b:"Professional engineering body review or technician-level certification"}};
+var $=function(i){return document.getElementById(i)};
+var occ=$("occ"),sk=$("skills"),ch=$("chal");
+Object.keys(D).forEach(function(k){var o=document.createElement("option");o.textContent=k;occ.appendChild(o)});
+function load(){var d=D[occ.value];sk.innerHTML=d.s.map(function(x,i){return '<label class="chk"><input type="checkbox" class="sk" value="'+x+'"> '+x+'</label>'}).join("");
+ch.innerHTML=d.c.map(function(x,i){return '<div>'+x+'<div class="row"><input type="range" class="cr" min="1" max="5" value="3"><span>3</span></div></div>'}).join("");
+Array.prototype.forEach.call(ch.querySelectorAll(".cr"),function(r){r.oninput=function(){r.nextElementSibling.textContent=r.value}});$("out").hidden=true}
+occ.onchange=load;load();
+$("yrs").oninput=function(){$("yv").textContent=this.value};
+Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){b.onclick=function(){
+Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(x){x.classList.toggle("on",x===b)});
+$("demo").hidden=b.dataset.t!=="demo";$("pitch").hidden=b.dataset.t!=="pitch"}});
+$("run").onclick=function(){
+var d=D[occ.value],ns=document.querySelectorAll(".sk:checked").length,tot=d.s.length;
+var crs=Array.prototype.map.call(document.querySelectorAll(".cr"),function(r){return +r.value});
+var ca=crs.reduce(function(a,b){return a+b},0)/crs.length;
+var ev=($("e1").checked?8:0)+($("e2").checked?10:0)+($("e3").checked?7:0)+($("e4").checked?5:0);
+var sc=Math.round(ns/tot*25+Math.min($("yrs").value,10)*1.5+ev+(ca-1)/4*25);
+sc=Math.min(sc,100);
+var lvl=sc>=70?["Verified-ready","ok"]:sc>=45?["Needs bridging","wn"]:["Needs evidence building","no"];
+var act=[];
+if(!$("e1").checked)act.push("No certificate? Request a registry confirmation or take a skills-based assessment: "+d.b+".");
+if(!$("e2").checked)act.push("Collect one reference: a former colleague, lecturer or supervisor who can confirm your work.");
+if(!$("e3").checked)act.push("Prepare 2-3 work samples or a short task portfolio.");
+if(!$("e4").checked)act.push("Add a workplace language course to your plan.");
+if(ns<tot-1)act.push("Close skill gaps with a short course in the skills you did not tick.");
+if(!act.length)act.push("You are well documented. Request a verification interview with a partner assessor.");
+var acc=[];
+acc.push($("wa").value==="y"?["ok","Work authorization confirmed."]:$("wa").value==="p"?["wn","Authorization pending: ask a legal-aid partner for a status update, and consider remote work for employers abroad where lawful."]:["no","Confirm your right to work with a legal-aid partner or UNHCR before applying."]);
+acc.push($("id").checked?["ok","ID document available."]:["no","Replace or obtain an ID document; most employers and banks require one."]);
+acc.push($("bk").checked?["ok","Payment access in place."]:["no","Set up a bank or mobile-money account, or ask a partner about employer-assisted payment options."]);
+var mark={ok:"&#10003;",wn:"!",no:"&#10007;"};
+var ready=acc.every(function(a){return a[0]==="ok"});
+var roles=sc>=45?d.r:[];
+$("out").innerHTML='<div class="card"><p class="sub">Competency evidence score</p><div class="score">'+sc+'<span style="font-size:1rem">/100</span></div><div class="bar"><i style="width:'+sc+'%"></i></div><p class="'+lvl[1]+'"><b>'+lvl[0]+'</b></p></div>'+
+'<div class="card"><h2 style="margin-top:0">1. Verify: your next steps</h2><ul>'+act.map(function(a){return "<li>"+a+"</li>"}).join("")+'</ul></div>'+
+'<div class="card"><h2 style="margin-top:0">2. Unlock: access checklist</h2><ul style="list-style:none;padding-left:0">'+acc.map(function(a){return '<li class="'+a[0]+'">'+mark[a[0]]+' '+a[1]+'</li>'}).join("")+'</ul></div>'+
+'<div class="card"><h2 style="margin-top:0">3. Connect: matches</h2>'+(roles.length?roles.map(function(r){return '<span class="tag">'+r+'</span>'}).join("")+'<p>'+(ready?"You can be introduced to hiring partners and a mentor now.":"Resolve the access items above first, then you can be introduced to hiring partners.")+'</p>':'<p>Build your evidence first. Matching opens at a score of 45 or above.</p>')+'</div>';
+$("out").hidden=false;$("out").scrollIntoView({behavior:"smooth"})};
+</script></main></body></html>
